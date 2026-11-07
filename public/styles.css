@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    letter-spacing: 0.4px;
 }
 
 body {
@@ -11,14 +12,26 @@ body {
     gap: 2rem;
 }
 
+.container {
+    width: min(100% - 30px, 900px);
+    margin: 0 auto;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
     background-color: crimson;
     color: white;
+    font-size: 1.2rem;
 }
 
 nav > ul  {
     list-style-type: none;
+    display: flex;
+    gap: 1.2rem;
+}
+nav > ul a {
+    color: white;
+    text-decoration: none;
 }
