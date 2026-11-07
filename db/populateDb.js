@@ -4,20 +4,20 @@ require('dotenv').config();
 const SQL = `
     CREATE TABLE IF NOT EXISTS brands (
         brand_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR(50) NOT NULL,
+        name VARCHAR(50) NOT NULL UNIQUE,
         description TEXT,
         origin VARCHAR(50)
     );
 
     CREATE TABLE IF NOT EXISTS category (
         category_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR(50) NOT NULL,
+        name VARCHAR(50) NOT NULL UNIQUE,
         description TEXT
     );
 
     CREATE TABLE IF NOT EXISTS status (
         status_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR(50) NOT NULL
+        name VARCHAR(50) NOT NULL UNIQUE
     );
 
     CREATE TABLE IF NOT EXISTS bikes (
