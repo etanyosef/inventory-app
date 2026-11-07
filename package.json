@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "populatedb": "node db/populatedb.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/etanyosef/inventory-app#readme",
   "dependencies": {
+    "dotenv": "^18.0.9",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
     "express-validator": "^7.3.2",
