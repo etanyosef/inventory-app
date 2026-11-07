@@ -1,5 +1,22 @@
+<% 
+    const links = [
+        { href: '/', text: 'Bikes' },
+        { href: '/category', text: 'Category'},
+        { href: '/brands', text: 'Brands'},
+        { href: '/status', text: 'Status'},
+    ];
+%>
+
 <nav>
     <ul>
-        <li><a href="/">Home</a></li>
+        <% for(let i = 0; i < links.length; i++) { %>
+            <li>
+                <ul>
+                    <a href="<%= links[i].href %>">
+                        <span><%= links[i].text %></span>
+                    </a>
+                </ul>
+            </li>
+        <% } %>
     </ul>
 </nav>
