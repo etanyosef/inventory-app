@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<form action="/bikes/new" method="post">
+    <label>
+        <span>Model</span>
+        <input type="text" name="model_name">
+    </label>
+
+    <label>
+        <span>Model Year</span>
+        <input type="text" name="model_year">
+    </label>
+
+    <label>
+        <span>Color</span>
+        <input type="text" name="color">
+    </label>
+
+    <label>
+        <span>Brand</span>
+        <select name="brand_id" id="">
+            <option value="">Select</option>
+            <% brands.forEach(brand => { %>
+                <option value="<%= brand.brand_id %>"><%= brand.name %></option>
+            <% }) %>
+        </select>
+    </label>
+
+    <label>
+        <span>Category</span>
+        <select name="category_id" id="">
+            <option value="">Select</option>
+            <% category.forEach(cat => { %>
+                <option value="<%= cat.category_id %>"><%= cat.name %></option>
+            <% }) %>
+        </select>
+    </label>
+
+    <fieldset>
+        <legend>Status</legend>
+
+        <% status.forEach(sta => { %>
+            <input 
+                type="radio" 
+                id="<%= 'status-' + sta.status_id %>" 
+                name="status_id" 
+                value="<%= sta.status_id %>"
+            >
+            <label for="<%= 'status-' + sta.status_id %>"><%= sta.name %></label>
+        <% }) %>
+    </fieldset>
+
+    <button type="submit">Add</button>
+</form>
+
+<%- include('../partials/footer') %>
+
