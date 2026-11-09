@@ -8,3 +8,22 @@ exports.inventoryGet = async (req, res) => {
         bikes,
     });
 }
+
+exports.newBikeGet = async (req, res) => {
+    const brands = await db.getBrands();
+    const category = await db.getCategories();
+    const status = await db.getStatus();
+
+    res.render('bikes/new', {
+        title: 'Add Bike',
+        brands,
+        category,
+        status,
+    });
+}
+
+exports.newBikePost = async (req, res) => {
+    const { model_name, model_year, color, brand_id, category_id, status_id } = req.body;
+    await db.createNewBike( model_name, model_year, color, brand_id, category_id, status_id);
+    res.redirect('/');
+}
