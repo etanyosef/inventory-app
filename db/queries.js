@@ -22,6 +22,34 @@ async function getAllBikes() {
     return rows;
 }
 
+async function createNewBike(model_name, model_year, color, brand_id, category_id, status_id) {
+    const SQL = `
+        INSERT INTO bikes (model_name, model_year, color, brand_id, category_id, status_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    `;
+    await pool.query(SQL, [model_name, model_year, color, brand_id, category_id, status_id]
+    );
+}
+
+async function getBrands() {
+    const { rows } = await pool.query('SELECT brand_id, name FROM brands');
+    return rows;
+}
+
+async function getCategories() {
+    const { rows } = await pool.query('SELECT category_id, name FROM category');
+    return rows;
+}
+
+async function getStatus() {
+    const { rows } = await pool.query('SELECT * FROM status');
+    return rows;
+}
+
 module.exports = {
     getAllBikes,
+    createNewBike,
+    getBrands,
+    getCategories,
+    getStatus,
 }
