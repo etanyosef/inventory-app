@@ -38,7 +38,7 @@ async function getBrands() {
 }
 
 async function getCategories() {
-    const { rows } = await pool.query('SELECT * FROM category');
+    const { rows } = await pool.query('SELECT * FROM category ORDER BY category_id ASC');
     return rows;
 }
 
