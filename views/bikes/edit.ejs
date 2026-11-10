@@ -1,0 +1,69 @@
+<%- include('../partials/header') %>
+
+<form action="/bikes/new" method="post">
+    <label>
+        <span>Model</span>
+        <input type="text" name="model_name" value="<%= bike.model_name %>">
+    </label>
+
+    <label>
+        <span>Model Year</span>
+        <input type="number" name="model_year" min="1800" value="<%= bike.model_year %>">
+    </label>
+
+    <label>
+        <span>Color</span>
+        <input type="text" name="color" value="<%= bike.color %>">
+    </label>
+
+    <label>
+        <span>Brand</span>
+        <select name="brand_id" id="">
+            <option value="">Select</option>
+            <% brands.forEach(brand => { %>
+                <option 
+                    value="<%= brand.brand_id %>"
+                    <% if (bike.bike_id === brand.brand_id) { %>
+                        selected
+                    <% } %>
+                ><%= brand.name %></option>
+            <% }) %>
+        </select>
+    </label>
+
+    <label>
+        <span>Category</span>
+        <select name="category_id" id="">
+            <option value="">Select</option>
+            <% category.forEach(cat => { %>
+                <option 
+                    value="<%= cat.category_id %>"
+                    <% if (bike.category_id === cat.category_id) { %>
+                        selected
+                    <% } %>
+                ><%= cat.name %></option>
+            <% }) %>
+        </select>
+    </label>
+
+    <fieldset>
+        <legend>Status</legend>
+
+        <% status.forEach(sta => { %>
+            <input 
+                type="radio" 
+                id="<%= 'status-' + sta.status_id %>" 
+                name="status_id" 
+                value="<%= sta.status_id %>"
+                <% if (bike.status_id === sta.status_id) { %>
+                    checked
+                <% } %>
+            >
+            <label for="<%= 'status-' + sta.status_id %>"><%= sta.name %></label>
+        <% }) %>
+    </fieldset>
+
+    <button type="submit">Update</button>
+</form>
+
+<%- include('../partials/footer') %>
