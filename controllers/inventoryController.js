@@ -24,6 +24,24 @@ exports.newBikeGet = async (req, res) => {
 
 exports.newBikePost = async (req, res) => {
     const { model_name, model_year, color, brand_id, category_id, status_id } = req.body;
-    await db.createNewBike( model_name, model_year, color, brand_id, category_id, status_id);
+    await db.createNewBike(model_name, model_year, color, brand_id, category_id, status_id);
     res.redirect('/');
+}
+
+exports.editBikeGet = async (req, res) => {
+    const { id } = req.params;
+    const bike = await db.getBike(id);
+    const brands = await db.getBrands();
+    const category = await db.getCategories();
+    const status = await db.getStatus();
+
+    console.log(bike[0])
+
+    res.render('bikes/edit', {
+        title: 'Bike',
+        bike: bike[0],
+        brands,
+        category,
+        status
+    });
 }
