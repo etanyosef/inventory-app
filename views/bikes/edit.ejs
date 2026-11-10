@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<form action="/bikes/new" method="post">
+<form action="/bikes/edit/<%= bike.bike_id %>" method="post">
     <label>
         <span>Model</span>
         <input type="text" name="model_name" value="<%= bike.model_name %>">
@@ -18,12 +18,12 @@
 
     <label>
         <span>Brand</span>
-        <select name="brand_id" id="">
+        <select name="brand_id">
             <option value="">Select</option>
             <% brands.forEach(brand => { %>
                 <option 
                     value="<%= brand.brand_id %>"
-                    <% if (bike.bike_id === brand.brand_id) { %>
+                    <% if (bike.brand_id === brand.brand_id) { %>
                         selected
                     <% } %>
                 ><%= brand.name %></option>
