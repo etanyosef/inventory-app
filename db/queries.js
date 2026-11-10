@@ -37,8 +37,24 @@ async function getBrands() {
 }
 
 async function getCategories() {
-    const { rows } = await pool.query('SELECT category_id, name FROM category');
+    const { rows } = await pool.query('SELECT * FROM category');
     return rows;
+}
+
+async function createNewCategory(name, description) {
+    await pool.query(
+        'INSERT INTO category (name, description) VALUES ($1, $2)',
+        [name, description]
+    );
+}
+
+async function getCategory(id) {
+    const { rows } = await pool.query('SELECT * FROM category WHERE category_id = ($1)', [id]);
+    return rows;
+}
+
+async function deleteCategory(id) {
+    await pool.query('DELETE FROM category WHERE category_id = ($1)', [id]);
 }
 
 async function getStatus() {
@@ -51,5 +67,8 @@ module.exports = {
     createNewBike,
     getBrands,
     getCategories,
+    createNewCategory,
+    getCategory,
+    deleteCategory,
     getStatus,
 }
