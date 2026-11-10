@@ -45,3 +45,7 @@ exports.editBikeGet = async (req, res) => {
         status
     });
 }
+
+exports.editBikePost = async (req, res) => {
+    
+}
