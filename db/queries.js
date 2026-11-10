@@ -3,6 +3,7 @@ const pool = require('./pool');
 async function getAllBikes() {
     const SQL = `
     SELECT 
+        b.bike_id,
         b.model_name,
         b.model_year,
         b.color,
