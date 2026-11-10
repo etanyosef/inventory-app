@@ -1,0 +1,25 @@
+<%- include('./partials/header') %>
+
+<a href="/category/new">Add category</a>
+
+<% if (categories.length > 0) { %>
+    <div>
+        <% categories.forEach(cat => { %>
+            <div>
+                <h2><%= cat.name %></h2>
+                <p><%= cat.description %></p>
+                <div>
+                    <a href="/category/edit/<%= cat.category_id %>">Edit</a>
+                    <form action="/category/delete/<%= cat.category_id %>" method="post">
+                        <button 
+                            type="submit"
+                            onclick="return confirm('Delete category <%= cat.name %>?');"
+                        >Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>
+
+<%- include('./partials/footer') %>
