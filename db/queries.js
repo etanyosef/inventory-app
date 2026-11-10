@@ -44,6 +44,20 @@ async function createNewBike(model_name, model_year, color, brand_id, category_i
     );
 }
 
+async function updateBike(id, model_name, model_year, color, brand_id, category_id, status_id) {
+    const SQL = `
+        UPDATE bikes
+        SET model_name = ($1),
+            model_year = ($2), 
+            color = ($3), 
+            brand_id = ($4), 
+            category_id = ($5), 
+            status_id = ($6)
+        WHERE bike_id = ($7)
+    `;
+    await pool.query(SQL, [model_name, model_year, color, brand_id, category_id, status_id, id]);
+}
+
 async function getBrands() {
     const { rows } = await pool.query('SELECT brand_id, name FROM brands');
     return rows;
@@ -89,6 +103,7 @@ module.exports = {
     getAllBikes,
     getBike,
     createNewBike,
+    updateBike,
     getBrands,
     getCategories,
     createNewCategory,
