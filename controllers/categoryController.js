@@ -43,3 +43,10 @@ exports.categoryEditGet = async (req, res) => {
         category: category[0],
     })
 }
+
+exports.categoryEditPost = async (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    await db.updateCategory(id, name, description);
+    res.redirect('/category');
+}
