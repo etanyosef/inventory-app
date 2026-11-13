@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<form action="/brand/edit/<%= brand.brand_id %>" method="post">
+    <label>
+        <span>Brand Name</span>
+        <input type="text" name="name" value="<%= brand.name %>">
+    </label>
+    <label>
+        <span>Origin</span>
+        <input type="text" name="origin">
+    </label>
+    <label>
+        <span>Description</span>
+        <textarea name="description"></textarea>
+    </label>
+    <button type="submit">Create</button>
+</form>
+
+<%- include('../partials/footer') %>
