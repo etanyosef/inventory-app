@@ -47,5 +47,14 @@ exports.editBikeGet = async (req, res) => {
 }
 
 exports.editBikePost = async (req, res) => {
-    
+    const { id } = req.params;
+    const { model_name, model_year, color, brand_id, category_id, status_id } = req.body;
+    await db.updateBike(id, model_name, model_year, color, brand_id, category_id, status_id);
+    res.redirect('/');
+}
+
+exports.deleteBikePost = async (req, res) => {
+    const { id } = req.params;
+    await db.deleteBike(id);
+    res.redirect('/');
 }
