@@ -17,6 +17,7 @@ async function getAllBikes() {
     ON b.category_id = cat.category_id
     JOIN status
     ON b.status_id = status.status_id
+    ORDER BY model_year DESC
     `;
 
     const { rows } = await pool.query(SQL);
@@ -58,9 +59,25 @@ async function updateBike(id, model_name, model_year, color, brand_id, category_
     await pool.query(SQL, [model_name, model_year, color, brand_id, category_id, status_id, id]);
 }
 
+async function deleteBike(id) {
+    await pool.query('DELETE FROM bikes WHERE bike_id = ($1)', [id]);
+}
+
 async function getBrands() {
-    const { rows } = await pool.query('SELECT brand_id, name FROM brands');
+    const { rows } = await pool.query('SELECT * FROM brands');
     return rows;
+}
+
+async function getBrand(id) {
+    const { rows } = await pool.query('SELECT * FROM brands WHERE brand_id = ($1)', [id]);
+    return rows;
+}
+
+async function createNewBrand(name, description, origin) {
+    await pool.query(
+        'INSERT INTO brands (name, description, origin) VALUES ($1, $2, $3)',
+        [name, description, origin]
+    );
 }
 
 async function getCategories() {
@@ -104,7 +121,10 @@ module.exports = {
     getBike,
     createNewBike,
     updateBike,
+    deleteBike,
     getBrands,
+    getBrand,
+    createNewBrand,
     getCategories,
     createNewCategory,
     getCategory,
