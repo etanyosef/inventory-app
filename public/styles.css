@@ -47,10 +47,27 @@ nav > ul a {
 table {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 10px;
 }
-
 table td,
 table th {
-    padding: 0.4rem;
-    border: 1px solid black;
+    padding: 0.6rem;
+    border: 1px solid rgb(145, 145, 145);
+}
+table .table-actions {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+table .table-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+table .table-actions svg {
+    width: 1.4rem;
+    fill: rgb(100, 100, 100);
+}
+table .table-actions svg:hover {
+    fill: green;
 }
