@@ -3,6 +3,7 @@ const app = express();
 const path = require('node:path');
 const inventoryRouter = require('./routes/inventoryRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const brandsRouter = require('./routes/brandsRouter');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', inventoryRouter);
 app.use('/category', categoryRouter);
+app.use('/brand', brandsRouter);
 
 app.use((req, res) => {
     res.status(404).render('404', {
