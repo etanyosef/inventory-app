@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<form action="/bikes/edit/<%= bike.bike_id %>" method="post">
+<form action="/bike/edit/<%= bike.bike_id %>" method="post">
     <label>
         <span>Model</span>
         <input type="text" name="model_name" value="<%= bike.model_name %>">
@@ -33,7 +33,7 @@
 
     <label>
         <span>Category</span>
-        <select name="category_id" id="">
+        <select name="category_id">
             <option value="">Select</option>
             <% category.forEach(cat => { %>
                 <option 
