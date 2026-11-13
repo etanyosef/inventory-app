@@ -1,0 +1,37 @@
+<%- include('./partials/header') %>
+
+<% 
+
+function formatToParagraph(text) {
+    if (typeof text !== 'string') return '';
+
+    const paragraphs = text.trim().split(/\n\s*\n/);
+
+    return paragraphs.map(p => `<p>${p.replace(/\n/g, ' ')}</p>`).join('');
+}
+
+%>
+
+<a href="/brand/new">New Brand</a>
+
+<% if (brands.length > 0 ) { %>
+    <div>
+        <% brands.forEach(brand => { %>
+            <div>
+                <h2><%= brand.name %></h2>
+                <div>
+                    <%- formatToParagraph(brand.description) %>
+                </div>
+                <p><%= brand.origin %></p>
+                <div>
+                    <a href="/brand/edit/<%= brand.brand_id %>">Edit</a>
+                    <form action="/brand/delete/<%= brand.brand_id %>" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+<% } %>
+
+<%- include('./partials/footer') %>
