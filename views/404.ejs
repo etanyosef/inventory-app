@@ -2,4 +2,8 @@
 
 <%= errorMsg %>
 
+<% if (locals.linkBack) { %>
+    <a href="<%= linkBack %>"><%= linkText %></a>
+<% } %>
+
 <%- include('./partials/footer') %>
