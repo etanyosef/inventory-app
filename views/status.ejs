@@ -1,0 +1,15 @@
+<%- include('./partials/header') %>
+
+<a href="/status/new">Add Status</a>
+
+<% if (statuses.length > 0) { %>
+   <div>
+        <% statuses.forEach(status => { %>
+            <div>
+                <h2><%= status.name %></h2>
+            </div>
+        <% }) %>
+   </div> 
+<% } %>
+
+<%- include('./partials/footer') %>
