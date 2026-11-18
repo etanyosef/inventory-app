@@ -80,6 +80,17 @@ async function createNewBrand(name, description, origin) {
     );
 }
 
+async function updateBrand(id, name, description, origin) {
+    await pool.query(
+        `UPDATE brands 
+        SET name = ($1),
+            description = ($2),
+            origin = ($3)
+        WHERE brand_id = ($4)`,
+        [name, description, origin, id]
+    );
+}
+
 async function getCategories() {
     const { rows } = await pool.query('SELECT * FROM category ORDER BY category_id ASC');
     return rows;
@@ -125,6 +136,7 @@ module.exports = {
     getBrands,
     getBrand,
     createNewBrand,
+    updateBrand,
     getCategories,
     createNewCategory,
     getCategory,
