@@ -39,3 +39,11 @@ exports.brandEditGet = async (req, res) => {
         brand: brand[0],
     });
 }
+
+exports.brandEditPost = async (req, res) => {
+    const { id } = req.params;
+    const { name, description, origin } = req.body;
+
+    await db.updateBrand(id, name, description, origin);
+    res.redirect('/brand');
+}
