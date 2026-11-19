@@ -127,6 +127,10 @@ async function getStatus() {
     return rows;
 }
 
+async function createNewStatus(status) {
+    await pool.query('INSERT INTO status (name) VALUES ($1)', [status]);
+}
+
 module.exports = {
     getAllBikes,
     getBike,
@@ -143,4 +147,5 @@ module.exports = {
     deleteCategory,
     updateCategory,
     getStatus,
+    createNewStatus,
 }
