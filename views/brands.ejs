@@ -26,7 +26,10 @@ function formatToParagraph(text) {
                 <div>
                     <a href="/brand/edit/<%= brand.brand_id %>">Edit</a>
                     <form action="/brand/delete/<%= brand.brand_id %>" method="post">
-                        <button type="submit">Delete</button>
+                        <button 
+                            type="submit"
+                            onclick="return confirm('Delete brand <%= brand.name %>?')"
+                        >Delete</button>
                     </form>
                 </div>
             </div>
