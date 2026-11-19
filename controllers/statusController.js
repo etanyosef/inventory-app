@@ -7,3 +7,15 @@ exports.statusGet = async (req, res) => {
         statuses
     });
 }
+
+exports.statusNewGet = (req, res) => {
+    res.render('status/new', {
+        title: 'New Status'
+    });
+}
+
+exports.statusNewPost = async (req, res) => {
+    const { status } = req.body;
+    await db.createNewStatus(status);
+    res.redirect('/status');
+}
