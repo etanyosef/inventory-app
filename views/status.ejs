@@ -7,6 +7,15 @@
         <% statuses.forEach(status => { %>
             <div>
                 <h2><%= status.name %></h2>
+                <div>
+                    <a href="/status/edit/<%= status.status_id %>">Edit</a>
+                    <form action="/status/delete/<%= status.status_id %>" method="post">
+                        <button
+                            type="submit"
+                            onclick="return confirm('Delete status <%= status.name %>?');"
+                        >Delete</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
    </div> 
