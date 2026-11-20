@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+<form action="/status/edit/<%= status.status_id %>" method="post">
+    <label>
+        <span>Status Name</span>
+        <input type="text" name="name" value="<%= status.name %>" />
+    </label>
+
+    <button type="submit">Update</button>
+</form>
+
+<%- include('../partials/footer') %>
