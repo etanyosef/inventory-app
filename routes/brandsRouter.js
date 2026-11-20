@@ -7,5 +7,6 @@ brandsRouter.get('/new', brandsController.brandNewGet);
 brandsRouter.post('/new', brandsController.brandNewPost);
 brandsRouter.get('/edit/:id', brandsController.brandEditGet);
 brandsRouter.post('/edit/:id', brandsController.brandEditPost);
+brandsRouter.post('/delete/:id', brandsController.brandDeletePost);
 
 module.exports = brandsRouter;
