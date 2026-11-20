@@ -91,6 +91,10 @@ async function updateBrand(id, name, description, origin) {
     );
 }
 
+async function deleteBrand(id) {
+    await pool.query('DELETE FROM brands where brand_id = ($1)', [id]);
+}
+
 async function getCategories() {
     const { rows } = await pool.query('SELECT * FROM category ORDER BY category_id ASC');
     return rows;
@@ -122,13 +126,31 @@ async function updateCategory(id, name, description) {
     await pool.query(SQL, [name, description, id]);
 }
 
-async function getStatus() {
+async function getAllStatus() {
     const { rows } = await pool.query('SELECT * FROM status');
     return rows;
 }
 
 async function createNewStatus(status) {
     await pool.query('INSERT INTO status (name) VALUES ($1)', [status]);
+}
+
+async function getStatus(id) {
+    const { rows } = await pool.query('SELECT * FROM status WHERE status_id = ($1)', [id]);
+    return rows;
+}
+
+async function updateStatus(id, name) {
+    const SQL = `
+        UPDATE status
+        SET name = ($2)
+        WHERE status_id = ($1)
+    `;
+    await pool.query(SQL, [id, name]);
+}
+
+async function deleteStatus(id) {
+    await pool.query('DELETE FROM status WHERE status_id = ($1)', [id])
 }
 
 module.exports = {
@@ -141,11 +163,15 @@ module.exports = {
     getBrand,
     createNewBrand,
     updateBrand,
+    deleteBrand,
     getCategories,
     createNewCategory,
     getCategory,
     deleteCategory,
     updateCategory,
-    getStatus,
+    getAllStatus,
     createNewStatus,
+    getStatus,
+    updateStatus,
+    deleteStatus,
 }
