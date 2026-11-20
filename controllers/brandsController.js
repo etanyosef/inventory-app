@@ -47,3 +47,9 @@ exports.brandEditPost = async (req, res) => {
     await db.updateBrand(id, name, description, origin);
     res.redirect('/brand');
 }
+
+exports.brandDeletePost = async (req, res) => {
+    const { id } = req.params;
+    await db.deleteBrand(id);
+    res.redirect('/brand');
+}
